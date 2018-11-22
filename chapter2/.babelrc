@@ -1,0 +1,25 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": ["last 2 Chrome versions"]
+        }
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["@babel/plugin-transform-runtime", {
+      "corejs": 2
+    }],
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "@": "./src"
+      }
+    }],
+    "@babel/plugin-syntax-export-default-from"
+  ]
+}
