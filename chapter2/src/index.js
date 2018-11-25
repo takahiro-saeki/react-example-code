@@ -9,7 +9,7 @@ document.body.style.margin = 0;
 const Main = () => (
   <Provider reducer={reducers}>
     <App />
-  </Provider >
-)
+  </Provider>
+);
 
 render(<Main />, document.querySelector('#app'));

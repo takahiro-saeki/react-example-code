@@ -7,7 +7,7 @@ const reducer = combineReducers({
   favorite,
   options,
   posts
-})
+});
 
 /*
 const init = {
@@ -22,6 +22,5 @@ const reducer = (state = init, action) => {
   return state
 }
 */
-
 
 export default reducer;

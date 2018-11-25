@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
-import { Container } from './style';
+import {
+  Container,
+  InputArea,
+  SearchForm,
+  SubmitBtn,
+  MainSection
+} from './style';
 
-const Header = ({ title }) => {
+const Header = ({ title, onSubmit }) => {
   const [value, setValue] = useState('');
+
   return (
     <Container>
-      <div>{title}</div>
-      <input
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        onKeyDown={e => console.log(value)}
-      />
+      <MainSection>
+        <div>{title}</div>
+        <InputArea>
+          <SearchForm
+            value={value}
+            onChange={e => setValue(e.target.value)}
+            onKeyDown={e =>
+              onSubmit({ keyCode: e.keyCode, searchValue: value })
+            }
+          />
+        </InputArea>
+        <SubmitBtn
+          onClick={() => onSubmit({ searchValue: value, type: 'submit' })}
+        >
+          Submit
+        </SubmitBtn>
+      </MainSection>
     </Container>
   );
 };

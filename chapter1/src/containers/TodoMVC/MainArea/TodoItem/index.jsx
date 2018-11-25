@@ -3,19 +3,33 @@ import Context from '../../Context';
 
 const TodoItem = ({ data }) => {
   const [editing, setEditing] = useState(false);
-  const [value, setValue] = useState('');
-  const { removeItem, checkItem } = useContext(Context);
+  const [value, setValue] = useState(data.title);
+  const { removeItem, checkItem, updateItem } = useContext(Context);
   const editInputEl = useRef(null);
 
   const isCheckedItem = item => (item === true ? 'completed' : '');
   const isEditingItem = item => (item === true ? 'editing' : '');
 
-  //const invokeCheckItem = () =>
+  const invokeCheckItem = async () => {
+    await setEditing(true);
+    await editInputEl.current.focus();
+  };
+
+  const invokeBlur = () => {
+    setEditing(false);
+  };
+
+  const isEnterEditInput = (e, id) => {
+    if (e.keyCode === 13) {
+      updateItem(value.trim(), id);
+      setEditing(false);
+    }
+  };
 
   return (
     <li
       className={`${isCheckedItem(data.isChecked)} ${isEditingItem(editing)}`}
-      onDoubleClick={() => setEditing(true)}
+      onDoubleClick={invokeCheckItem}
     >
       <div className="view">
         <input
@@ -29,8 +43,12 @@ const TodoItem = ({ data }) => {
       </div>
       <input
         className="edit"
+        type="text"
         value={value}
         onChange={e => setValue(e.target.value)}
+        onKeyUp={e => isEnterEditInput(e, data.id)}
+        ref={editInputEl}
+        onBlur={() => invokeBlur()}
       />
     </li>
   );

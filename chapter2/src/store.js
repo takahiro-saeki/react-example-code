@@ -1,16 +1,13 @@
 import React, { useContext } from 'react';
 // import reducer from './reducer';
 
-const combineReducer = reducers => {
-  
-}
+const combineReducer = reducers => {};
 
 /*
 storeを作る
 
 */
 
-const store = initialStore => {
-}
+const store = initialStore => {};
 
 export default store;
