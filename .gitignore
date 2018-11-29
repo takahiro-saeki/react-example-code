@@ -61,3 +61,5 @@ typings/
 .next
 
 # ignore .cache directory made from parcel.
+.cache
+.vscode

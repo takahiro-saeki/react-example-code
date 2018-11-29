@@ -5,7 +5,7 @@ import Context from './Context';
 import hundlers from './hundlers';
 import { persist, checkFilter } from './modules';
 
-console.log('index')
+console.log('index');
 
 const main = () => {
   const initialState = {

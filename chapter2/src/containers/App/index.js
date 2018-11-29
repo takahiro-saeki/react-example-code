@@ -50,7 +50,7 @@ const App = () => {
     setValue(searchValue);
   };
 
-  console.log(store.posts.data)
+  console.log(store.posts.data);
 
   useEffect(() => {
     (async () => {
@@ -67,7 +67,9 @@ const App = () => {
     <div>
       <Header title="Hacker News Client" onSubmit={invokeSearch} />
       <ListArea>
-      {store.posts.data.map(item => <List {...item} width={windowWidth} key={v4()} />)}
+        {store.posts.data.map(item => (
+          <List {...item} width={windowWidth} key={v4()} />
+        ))}
       </ListArea>
       <Pagination />
     </div>

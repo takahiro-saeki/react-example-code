@@ -1,13 +1,29 @@
 import React, { Component } from 'react';
-import moment from 'moemnt';
+import moment from 'moment';
+import Container from './style';
 
 export default class ClassComponent extends Component {
   state = {
     time: moment().format('YYYY/MM/DD HH:mm ss')
+  };
+
+  componentDidMount() {
+    setInterval(() => this.updateMethod(), 1000);
   }
+
+  updateMethod = () => {
+    this.setState({
+      time: moment().format('YYYY/MM/DD HH:mm ss')
+    });
+  };
 
   render() {
     const { time } = this.state;
-    return <div>time is <time>{time}</time></div>
+
+    return (
+      <div>
+        time is: <time>{time}</time>
+      </div>
+    );
   }
 }

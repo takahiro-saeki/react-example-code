@@ -20,6 +20,7 @@
         "@chapter2": "./chapter2/src"
       }
     }],
-    "@babel/plugin-syntax-export-default-from"
+    "@babel/plugin-syntax-export-default-from",
+    "@babel/plugin-proposal-class-properties"
   ]
 }

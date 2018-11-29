@@ -7,9 +7,7 @@ import App from './containers/App';
 const Root = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={App} />
-      <Route path="/counter" component={Counter} />
-      <Route path="/todo-mvc" component={TodoMVC} />
+      <Route exact path="/" component={TodoMVC} />
     </Switch>
   </Router>
 );

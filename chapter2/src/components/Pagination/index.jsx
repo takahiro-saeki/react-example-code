@@ -8,6 +8,6 @@ const Pagination = () => (
     <li>3</li>
     <li>next</li>
   </ul>
-)
+);
 
 export default Pagination;
