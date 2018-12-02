@@ -12,8 +12,8 @@ import {
 
 type Props = {
   title: string,
-  onSubmit: () => void,
-  showFavoriteItems: () => void
+  onSubmit: Function,
+  showFavoriteItems: Function
 };
 const Header = ({ title, onSubmit, showFavoriteItems }: Props) => {
   const [value, setValue] = useState('');
