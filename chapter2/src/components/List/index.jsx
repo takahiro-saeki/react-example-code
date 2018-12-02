@@ -10,7 +10,7 @@ type Props = {
   url: string,
   author: string,
   width: number,
-  addFavorite: () => void,
+  addFavorite: Function,
   isFavorite: boolean,
   objectID: string,
   id: number

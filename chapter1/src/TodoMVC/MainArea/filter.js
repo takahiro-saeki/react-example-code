@@ -1,5 +1,3 @@
-// @flow
-
 const filter = (items, type) => {
   switch (type) {
     case 'all': {

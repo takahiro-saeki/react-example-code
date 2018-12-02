@@ -22,6 +22,7 @@ const TodoItem = ({ data }: Props) => {
 
   const invokeCheckItem = async () => {
     await setEditing(true);
+    // $FlowFixMe
     await editInputEl.current.focus();
   };
 

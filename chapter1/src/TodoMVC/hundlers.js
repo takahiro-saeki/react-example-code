@@ -1,5 +1,3 @@
-// @flow
-
 import { v4 } from 'uuid';
 import { persist } from './modules';
 

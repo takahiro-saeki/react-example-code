@@ -7,8 +7,13 @@ import Context from './Context';
 import hundlers from './hundlers';
 import { persist, checkFilter } from './modules';
 
+type InitState = {
+  data: any,
+  current: string
+};
+
 const Main = () => {
-  const initialState = {
+  const initialState: InitState = {
     data: !persist.read() ? mockData : persist.read(),
     current: checkFilter()
   };

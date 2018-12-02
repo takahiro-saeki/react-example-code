@@ -7,16 +7,18 @@ import NumberField from './NumberField';
 import decoratorExample from './decoratorExample';
 
 type Props = {
-  message: string,
+  message: any,
   children: any
 };
 
 type State = {
   minRange: number,
   maxRange: number,
-  errorMsg: string
+  errorMsg: any,
+  result: number
 };
 
+// $FlowFixMe
 @decoratorExample({
   component: NumberField,
   props: {
@@ -34,10 +36,11 @@ class Decorator extends Component<Props, State> {
   state = {
     minRange: 1,
     maxRange: 2,
-    errorMsg: ''
+    errorMsg: '',
+    result: 0
   };
 
-  handleChange = ({ type, value }) => {
+  handleChange = ({ type, value }: any) => {
     const toNumber = Number(value);
     if (isNaN(toNumber)) {
       return;

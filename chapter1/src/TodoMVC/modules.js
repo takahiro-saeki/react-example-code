@@ -1,5 +1,3 @@
-// @flow
-
 export const checkFilter = () => {
   const checkHash = location.hash;
   switch (true) {

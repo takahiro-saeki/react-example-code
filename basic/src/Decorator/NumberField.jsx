@@ -8,7 +8,7 @@ type Props = {
   maxRange: number,
   result?: number,
   invoke: () => void,
-  formChange: () => void,
+  formChange: Function,
   errorMsg: string,
   title: string
 };
