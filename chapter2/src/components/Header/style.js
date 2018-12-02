@@ -40,3 +40,20 @@ export const SubmitBtn = styled.button`
   font-size: 16px;
   border-radius: 0.25rem;
 `;
+
+export const HeaderBtn = styled.button`
+  margin-left: 1rem;
+  background: none;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  font-size: 16px;
+  color: #fff;
+  padding: 0.5rem;
+  outline: 0;
+  cursor: pointer;
+  transition: 0.5s
+  &:hover {
+    background: #fff;
+    color: #ff742b;
+  }
+`;

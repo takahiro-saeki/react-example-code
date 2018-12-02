@@ -1,79 +1,85 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  useCallback,
-  useMemo
-} from 'react';
-import { v4 } from 'uuid';
-import { Header, List, Pagination } from '@chapter2/components';
+import React, { useEffect, useCallback } from 'react';
+import MainView from '@chapter2/pages/MainView';
 import useWindowWidth from '@chapter2/modules/useWindowWidth';
-import Context from '../../Context';
-import { addTodo } from '../../actions';
-import { ListArea } from './style';
+import { getSearch, getFavoItems } from '@chapter2/modules/fetchLogic';
+import { addTodo, addFavoItem } from '@chapter2/actions';
+import connect from '../../connect';
 
-const PATH = '//hn.algolia.com/api/v1/search?query=react';
-const SEARCH_PATH = query =>
-  `//hn.algolia.com/api/v1/search?query=${query}&tags=story`;
-const getData = async (query = false) => {
-  if (query) {
-    const SERACH = SEARCH_PATH(query);
-    console.log(SERACH);
-    const fetchData = await fetch(SERACH);
-    const json = await fetchData.json();
-    return json;
-  }
-  const fetchData = await fetch(PATH);
-  const json = await fetchData.json();
-  return json;
-};
-
-const App = () => {
-  const { store, dispatch } = useContext(Context);
-  const [value, setValue] = useState('');
-
+const App = ({ posts, addTodo, addFavoItem, favorite }) => {
   const windowWidth = useWindowWidth();
 
   const invokeSearch = async ({ searchValue, keyCode, type = 'default' }) => {
     if (keyCode === 13) {
-      console.log('enter');
-      const search = await getData(searchValue);
-      dispatch(addTodo(search));
+      const search = await getSearch(searchValue);
+      addTodo(search.hits);
       return;
     }
 
     if (type === 'submit') {
-      const search = await getData(searchValue);
-      dispatch(addTodo(search));
+      const search = await getSearch(searchValue);
+      addTodo(search.hits);
       return;
     }
-    setValue(searchValue);
   };
 
-  console.log(store.posts.data);
+  const invokeFavoItems = async () => {
+    const getItems = await getFavoItems(favorite);
+    const addingFavoFlag = await getItems.map(item => ({
+      ...item,
+      isFavorite: true
+    }));
+    await addTodo(addingFavoFlag);
+  };
+
+  const memoizePosts = useCallback(
+    () => {
+      const mapItem = posts.map(item => {
+        const checkFavo = favorite.includes(
+          item.id ? item.id : Number(item.objectID)
+        );
+        return {
+          ...item,
+          isFavorite: checkFavo
+        };
+      });
+      return mapItem;
+    },
+    [posts, favorite]
+  );
 
   useEffect(() => {
     (async () => {
       try {
-        const data = await getData();
-        dispatch(addTodo(data));
+        const data = await getSearch();
+        addTodo(data.hits);
       } catch (e) {
-        console.error(e);
+        // error logic
       }
     })();
   }, []);
 
-  return (
-    <div>
-      <Header title="Hacker News Client" onSubmit={invokeSearch} />
-      <ListArea>
-        {store.posts.data.map(item => (
-          <List {...item} width={windowWidth} key={v4()} />
-        ))}
-      </ListArea>
-      <Pagination />
-    </div>
-  );
+  const hundlers = {
+    invokeSearch,
+    posts: memoizePosts(),
+    windowWidth,
+    addFavoItem,
+    invokeFavoItems
+  };
+
+  return <MainView {...hundlers} />;
 };
 
-export default App;
+const mapStateToProps = store => ({
+  posts: store.posts.data,
+  favorite: store.favorite.favorite_posts
+});
+
+const mapDispathToProps = dispatch => ({
+  addTodo: param => dispatch(addTodo(param)),
+  addFavoItem: param => dispatch(addFavoItem(param))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispathToProps
+)(App);

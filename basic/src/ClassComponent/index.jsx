@@ -1,8 +1,13 @@
+// @flow
+
 import React, { Component } from 'react';
 import moment from 'moment';
-import Container from './style';
 
-export default class ClassComponent extends Component {
+type State = {
+  time: string
+};
+
+export default class ClassComponent extends Component<void, State> {
   state = {
     time: moment().format('YYYY/MM/DD HH:mm ss')
   };

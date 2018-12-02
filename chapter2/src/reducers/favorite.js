@@ -1,13 +1,29 @@
 const init = {
-  favorite_posts: [],
-  order: 'asc'
+  favorite_posts: []
 };
 
 const favorite = (state = init, action) => {
-  if (action.type === 'ADD_FAVORITE_TODO') {
-    return { ...state, order: 'none' };
+  switch (action.type) {
+    case 'ADD_FAVORITE_ITEM': {
+      const mergeArray = [...state.favorite_posts, action.payload.id];
+      if (state.favorite_posts.includes(action.payload.id)) {
+        const removeItem = mergeArray.filter(
+          item => item !== action.payload.id
+        );
+        return {
+          ...state,
+          favorite_posts: removeItem
+        };
+      }
+      return {
+        ...state,
+        favorite_posts: mergeArray
+      };
+    }
+    default: {
+      return state;
+    }
   }
-  return state;
 };
 
 export default favorite;

@@ -1,13 +1,21 @@
+// @flow
+
 import React, { useState } from 'react';
 import {
   Container,
   InputArea,
   SearchForm,
   SubmitBtn,
-  MainSection
+  MainSection,
+  HeaderBtn
 } from './style';
 
-const Header = ({ title, onSubmit }) => {
+type Props = {
+  title: string,
+  onSubmit: () => void,
+  showFavoriteItems: () => void
+};
+const Header = ({ title, onSubmit, showFavoriteItems }: Props) => {
   const [value, setValue] = useState('');
 
   return (
@@ -28,6 +36,7 @@ const Header = ({ title, onSubmit }) => {
         >
           Submit
         </SubmitBtn>
+        <HeaderBtn onClick={showFavoriteItems}>favorite</HeaderBtn>
       </MainSection>
     </Container>
   );

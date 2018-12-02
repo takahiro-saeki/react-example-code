@@ -1,5 +1,11 @@
+// @flow
+
 import React from 'react';
 
-const Counter = ({ count }) => <div>{count}</div>;
+type Props = {
+  count: number
+};
+
+const Counter = ({ count }: Props) => <div>{count}</div>;
 
 export default Counter;
