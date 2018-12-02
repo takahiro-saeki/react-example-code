@@ -1,10 +1,3 @@
-// @flow
-
-type Persist = {
-  read: any,
-  save: Function
-};
-
 export const checkFilter = () => {
   const checkHash = location.hash;
   switch (true) {
@@ -19,7 +12,7 @@ export const checkFilter = () => {
   }
 };
 
-export const persist: Persist = {
+export const persist = {
   read: () => JSON.parse(localStorage.getItem('store')),
   save: data => localStorage.setItem('store', JSON.stringify(data))
 };

@@ -1,6 +1,4 @@
-// @flow
-
-const filter = (items: Array<Object>, type: string) => {
+const filter = (items, type) => {
   switch (type) {
     case 'all': {
       return items;
