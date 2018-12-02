@@ -1,5 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Root from './Root';
+import TodoMVC from './TodoMVC';
 
-render(<Root />, document.querySelector('#app'));
+render(<TodoMVC />, document.querySelector('#app'));

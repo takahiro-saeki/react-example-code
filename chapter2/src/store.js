@@ -1,13 +1,12 @@
-import React, { useContext } from 'react';
-// import reducer from './reducer';
+import { useContext } from 'react';
+import Context from './Context';
 
-const combineReducer = reducers => {};
-
-/*
-storeを作る
-
-*/
-
-const store = initialStore => {};
+const store = () => {
+  const { store, dispatch } = useContext(Context);
+  return {
+    getState: store,
+    dispatch
+  };
+};
 
 export default store;

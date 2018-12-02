@@ -1,6 +1,16 @@
-import React, { Component } from 'react';
+// @flow
+import { Component } from 'react';
 
-export default class ToggleHelper extends Component {
+type Props = {
+  init?: boolean,
+  children: any
+};
+
+type State = {
+  toggle: boolean
+};
+
+export default class ToggleHelper extends Component<Props, State> {
   static defaultProps = {
     init: false
   };

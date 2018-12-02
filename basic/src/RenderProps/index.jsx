@@ -5,8 +5,10 @@ const RenderProps = () => (
   <ToggleHelper init>
     {({ toggle, changeToggle }) => (
       <div>
-        <div onClick={() => console.log(toggle)}>test</div>
-        <div onClick={changeToggle}>change toggle</div>
+        <div>condition: {toggle ? 'true' : 'false'}</div>
+        <button type="button" onClick={changeToggle}>
+          change toggle
+        </button>
       </div>
     )}
   </ToggleHelper>

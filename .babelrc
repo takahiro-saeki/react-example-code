@@ -11,16 +11,23 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    ["@babel/plugin-transform-runtime", {
-      "corejs": 2
-    }],
-    ["module-resolver", {
-      "root": ["./src"],
-      "alias": {
-        "@chapter2": "./chapter2/src"
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 2
       }
-    }],
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "@chapter2": "./chapter2/src"
+        }
+      }
+    ],
     "@babel/plugin-syntax-export-default-from",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
   ]
 }

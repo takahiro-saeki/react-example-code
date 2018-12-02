@@ -1,7 +1,14 @@
+// @flow
+
 import React, { useState, useReducer, useEffect } from 'react';
 import Context from './Context';
 
-const Provider = ({ children, reducer }) => {
+type Props = {
+  children: any,
+  reducer: () => {}
+};
+
+const Provider = ({ children, reducer }: Props) => {
   const [store, dispatch] = useReducer(reducer);
   const [state, setState] = useState({ isLoaded: false });
 
