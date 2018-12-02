@@ -18,8 +18,11 @@ jobs:
           name: Install dependencies
           command: yarn
       - run:
-          name: Build
+          name: check eslint
           command: yarn lint:fix
+      - run:
+          name: check flow
+          command: yarn flow
       - save_cache:
           key: projectname-{{ .Branch }}-{{ checksum "yarn.lock" }}
           paths:
