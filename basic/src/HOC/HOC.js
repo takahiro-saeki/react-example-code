@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 const HOC = WrappedComponent =>
   class extends Component {
@@ -18,11 +18,7 @@ const HOC = WrappedComponent =>
     };
 
     render() {
-      return (
-        <Fragment>
-          <WrappedComponent {...this.state} />
-        </Fragment>
-      );
+      return <WrappedComponent {...this.state} />;
     }
   };
 

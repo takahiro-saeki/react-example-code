@@ -63,3 +63,6 @@ typings/
 # ignore .cache directory made from parcel.
 .cache
 .vscode
+
+# ignore document
+./document
