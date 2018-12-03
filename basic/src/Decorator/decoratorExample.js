@@ -5,9 +5,9 @@ const decoratorExample = config => {
   const Component = component;
   return WrappedComponent => () => (
     <WrappedComponent {...parentProps}>
-      {mergeProps => {
-        return component ? <Component {...props} {...mergeProps} /> : null;
-      }}
+      {mergeProps =>
+        component ? <Component {...props} {...mergeProps} /> : null
+      }
     </WrappedComponent>
   );
 };
