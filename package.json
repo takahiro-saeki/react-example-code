@@ -38,6 +38,7 @@
     "eslint-plugin-react-hooks": "^0.0.0",
     "flow-bin": "^0.87.0",
     "flow-typed": "^2.5.1",
+    "parcel-bundler": "^1.10.3",
     "prettier": "^1.15.3",
     "prettier-eslint": "^8.8.2"
   },
@@ -47,6 +48,7 @@
     "start:chapter2": "npm run clean && parcel ./chapter2/index.html",
     "lint:fix": "eslint --color --ext [jsx,js] ./chapter1 ./chapter2 ./basic --fix --quiet --cache",
     "flow": "flow",
-    "clean": "rm -rf ./cache"
+    "clean": "rm -rf ./cache",
+    "tree:chapter2": "tree ./chapter2 -I 'node_modules|dist|.cache|flow-typed'"
   }
 }

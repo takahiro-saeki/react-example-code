@@ -617,3 +617,70 @@ export default Example2;
 こうする事で、上記のように実際に使用する際は複雑は記述は無く、シンプルにコンポーネントを並べるだけで使用する事が出来ます。個人的な見解ですが、一見使用する際は見た目がスッキリしていて良いですが、大元の component を構築する際に色々と考慮しなくてはいけない事が多かったりするのであまり使用する機会は無いのかなと思います。また効果的に Compound Component をプロダクションで使用している例があれば是非知りたいです。
 
 ### hooks の書き方について
+
+hooks とは `React.js@0.16.7-alpha-0` から実装され使用出来るようになった新しい API です。まだ alpha 版でしか使用する事が出来ないですが、とてもパワフルで今までのコンポーネントの構築の歴史を変えるような機能を持っています。
+まずは簡単なサンプルを見てみましょう。
+
+```
+import React, { useState } from 'react';
+
+const HooksExample = () => {
+  const [value, setValue] = useState(0);
+
+  const add = () => setValue(value + 1);
+  const subtract = () => setValue(value - 1);
+  const reset = () => setValue(0);
+
+  const asyncAdd = async () =>
+    await setTimeout(() => setValue(value + 1), 1000);
+
+  return (
+    <div>
+      <button type="button" onClick={add}>
+        +
+      </button>
+      <button type="button" onClick={subtract}>
+        -
+      </button>
+      <button type="button" onClick={asyncAdd}>
+        async add
+      </button>
+      <button type="button" onClick={reset}>
+        reset
+      </button>
+      <div>number is: {value}</div>
+    </div>
+  );
+};
+
+export default HooksExample;
+```
+
+今までは通常 SFC 内では state を扱う事が出来ませんでした。しかし、hooks を使う事で SFC 内で簡単に state を扱う事が出来ます。
+注目すべきは `useState` というメソッドです。下記の記述ですが、
+
+```
+const [value, setValue] = useState(0);
+```
+
+ここの `value` 並びに `setValue` は好きは名前を割り振る事が出来ます。 `const [state, setState] = useState({});` でも良いですし、 `const [counter, setCounter] = useState(0);` でも可能です。配列の左側に当たる値は state の値になり、右側は setState の役割を果たします。また同一コンポーネント内に複数の state を作る事が出来ます。
+
+```
+//例えばこんな事も出来ます。
+const Sample = () => {
+  const [ state, setState ] = useState({});
+  const [ something, setSomething ] = useState('something');
+  cnost [ userInfo, setUserInfo ] = useState({})
+  ...
+  return (
+    <div>
+      //DOMの記述
+    </div>
+  )
+}
+```
+
+また慣習として、setState に当たる関数に関しては `set` というプレフィックスを付けます。この方がその関数がどんな役割を持っているのかわかり易いので納得です。
+また `useState` 以外にも他に API があります。いずれも `use` というプレフィックスが付いた関数でこれは hooks API に関わる全ての API に `use` というプレフィックスが付いています。また独自の hooks 用のライブラリを作る際も `use` というプレフィックスから始まる名前で作るのが一般的となっています。
+
+ここまででざっくりですが、一通りのコンポーネントの記述方法を解説して行きました。もし一つでも知らない記述方法があれば是非サンプルを触ってみたり、ご自身で試しにコンポーネントを書くなど、知見を深めてみては如何でしょうか。

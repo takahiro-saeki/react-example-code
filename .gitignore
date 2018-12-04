@@ -65,4 +65,4 @@ typings/
 .vscode
 
 # ignore document
-./document
+./document/*

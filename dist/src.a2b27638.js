@@ -58973,6 +58973,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// $FlowFixMe
 var Decorator = (_dec = (0, _decoratorExample.default)({
   component: _NumberField.default,
   props: {
@@ -59005,7 +59006,8 @@ function (_Component) {
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "state", {
       minRange: 1,
       maxRange: 2,
-      errorMsg: ''
+      errorMsg: '',
+      result: 0
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)((0, _assertThisInitialized2.default)(_this)), "handleChange", function (_ref) {
       var type = _ref.type,
@@ -59179,7 +59181,7 @@ var HOC = function HOC(WrappedComponent) {
       }, {
         key: "render",
         value: function render() {
-          return _react.default.createElement(_react.Fragment, null, _react.default.createElement(WrappedComponent, this.state));
+          return _react.default.createElement(WrappedComponent, this.state);
         }
       }]);
       return _class2;
@@ -60369,7 +60371,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63412" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56939" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
